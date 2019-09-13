@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Open URL One By One</title>
+</head>
+<body>
+	<button onclick="open_url(0);" id="start">Start Browsing</button>
+	<h2>Current URL - <span class="current-url"></span></h2>
+	<h3>All URL</h3>
+	<ul class="url-list">
+		
+	</ul>
+	<script type="text/javascript">
+		site_list = ["http://anthousebd.net/", "https://mojaloss.net/", "http://103.102.253.250/", "http://10.16.100.244/", "http://moviehaat.net/", "http://dhakamovie.com/", "http://banglaflix.com.bd/", "https://www.iflix.com/", "http://www.dnftpbd.com/", "http://10.233.233.233/cwhome/", "http://moviemela.live/", "http://vdomela.com/", "http://plygig.com/", "http://123.123.123.123:8096/web/index.html#!/home.html", "http://ftp.alphamediazone.com/", "http://fs1.mebd.net/fs1/", "http://fs.ebox.live/", "http://123.123.123.123:8095/vfolder.ghp", "http://cdn.bossbd.net/", "http://cdn1.bossbd.net/"];
+		site_list.map(function(url){
+			document.querySelector('.url-list').innerHTML += `<li>${url}</li>`;
+		});
+		function open_url(i){
+			document.querySelector('.current-url').innerHTML = site_list[i];
+			my = window.open(site_list[i], '_blank');
+		    var interval = setInterval(function() {
+		        if (my.closed == true) {
+					open_url(i+1);
+					clearInterval(interval);			
+				}
+		    },1000)
+		}
+	</script>
+</body>
+</html>
