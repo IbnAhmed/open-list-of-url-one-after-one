@@ -16,14 +16,19 @@
 			document.querySelector('.url-list').innerHTML += `<li>${url}</li>`;
 		});
 		function open_url(i){
-			document.querySelector('.current-url').innerHTML = site_list[i];
-			my = window.open(site_list[i], '_blank');
-		    var interval = setInterval(function() {
-		        if (my.closed == true) {
-					open_url(i+1);
-					clearInterval(interval);			
-				}
-		    },1000)
+			if(site_list.length > i){
+				document.querySelector('.current-url').innerHTML = site_list[i];
+				my = window.open(site_list[i], '_blank');
+			    var interval = setInterval(function() {
+			        if (my.closed == true) {
+						open_url(i+1);
+						clearInterval(interval);			
+					}
+			    },1000)	
+			} else {
+				document.querySelector('.current-url').innerHTML = 'No url left';
+				return false;
+			}			
 		}
 	</script>
 </body>
